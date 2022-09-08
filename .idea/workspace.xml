@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a5b3c002-0e42-494b-8c08-303ad437d956" name="Changes" comment="&quot;new-code&quot;">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/api-docs.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/gen-swagger.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/api/api-configuration.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/api/api.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/api/base-service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/api/models.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/api/models/product.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/api/models/stock.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/api/models/user.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/api/services.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/api/services/product-controller.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/api/services/stock-controller.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/api/services/user-controller.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/api/strict-http-response.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/footer/footer.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/footer/footer.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/footer/footer.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/footer/footer.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/header/header.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/header/header.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/header/header.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/header/header.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/product/product-form/product-form.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/product/product-form/product-form.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/product/product-form/product-form.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/product/product-form/product-form.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/product/products-list/products-list.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/product/products-list/products-list.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/product/products-list/products-list.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/product/products-list/products-list.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/stock/stock-details/stock-details.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/stock/stock-details/stock-details.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/stock/stock-details/stock-details.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/stock/stock-details/stock-details.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/stock/stock-form/stock-form.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/stock/stock-form/stock-form.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/stock/stock-form/stock-form.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/stock/stock-form/stock-form.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/account-details/account-details.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/account-details/account-details.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/account-details/account-details.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/account-details/account-details.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/change-password/change-password.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/change-password/change-password.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/change-password/change-password.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/change-password/change-password.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/change-username/change-username.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/change-username/change-username.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/change-username/change-username.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/change-username/change-username.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/login/login.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/login/login.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/login/login.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/login/login.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/register/register.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/register/register.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/register/register.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/register/register.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/app.module.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2ERrUSzmwd5DiSqwxcRw9d4NxWS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Victor\\Desktop\\Final project\\Frontend\\products-cli\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Victor\Desktop\Final project\Frontend\products-cli\src\assets" />
+      <recent name="C:\Users\Victor\Desktop\Final project\Frontend\products-cli\src\app\components\user" />
+      <recent name="C:\Users\Victor\Desktop\Final project\Frontend\products-cli\src\app\components\product" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a5b3c002-0e42-494b-8c08-303ad437d956" name="Changes" comment="" />
+      <created>1662569255616</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1662569255616</updated>
+      <workItem from="1662569257213" duration="7546000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="&quot;new-code&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;new-code&quot;" />
+  </component>
+</project>
