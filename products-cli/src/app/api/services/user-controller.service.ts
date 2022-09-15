@@ -4,7 +4,7 @@ import { HttpClient, HttpRequest, HttpResponse, HttpHeaders } from '@angular/com
 import { BaseService as __BaseService } from '../base-service';
 import { ApiConfiguration as __Configuration } from '../api-configuration';
 import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-response';
-import { Observable as __Observable } from 'rxjs';
+import {BehaviorSubject, Observable as __Observable, Subject} from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { User } from '../models/user';
@@ -16,6 +16,9 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 class UserControllerService extends __BaseService {
+  loggedUser$: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  accountDetailsType$: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  static readonly getUserByUsernameUsingGETPath = '/user/account-details';
   static readonly registerUserUsingPOSTPath = '/user/register';
   static readonly updateUserPasswordUsingPUTPath = '/user/update-account-password';
   static readonly updateUserNameUsingPUTPath = '/user/update-account-username';
@@ -25,6 +28,44 @@ class UserControllerService extends __BaseService {
     http: HttpClient
   ) {
     super(config, http);
+  }
+
+  /**
+   * getUserByUsername
+   * @param username username
+   * @return OK
+   */
+  getUserByUsernameUsingGETResponse(username: string): __Observable<__StrictHttpResponse<User>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    if (username != null) __params = __params.set('username', username.toString());
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/user/account-details`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: "json"
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<User>;
+      })
+    );
+  }
+  /**
+   * getUserByUsername
+   * @param username username
+   * @return OK
+   */
+  getUserByUsernameUsingGET(username: string): __Observable<User> {
+    return this.getUserByUsernameUsingGETResponse(username).pipe(
+      __map(_r => _r.body as User)
+    );
   }
 
   /**

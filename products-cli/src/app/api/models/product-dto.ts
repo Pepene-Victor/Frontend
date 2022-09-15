@@ -1,8 +1,8 @@
 /* tslint:disable */
-export interface Product {
+export interface ProductDto {
   packageSize?: string;
   productName?: string;
-  pzn: string;
+  pzn?: string;
   strength?: string;
   supplier?: string;
   unit?: string;

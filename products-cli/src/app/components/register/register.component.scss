@@ -1,0 +1,51 @@
+form {
+  border: 6px solid white;
+  width: 25%;
+  margin: 0 auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: grid;
+  grid-gap: 1.3rem;
+  .heading-container{
+    background-color: dodgerblue;
+    border-radius: 15px;
+    div{
+      width: 45%;
+      padding: 0.2rem 0;
+      background-color: #22baff;
+      border-top-right-radius: 40px;
+      border-bottom-left-radius: 50px;
+      h1{
+        color: white;
+      }
+    }
+  }
+  .fields-container{
+    display: grid;
+    grid-gap: 1.5rem;
+    input{
+      box-sizing: border-box;
+      width: 100%;
+    }
+  }
+  .buttons-container{
+    background-color: rgba(205, 205, 200, 0.5);
+    padding: 10px;
+    justify-content: space-between;
+    display: flex;
+    border-radius: 10px;
+    button{
+      background-color: dodgerblue;
+      color: white;
+      padding: 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 35%;
+      border-radius: 15px;
+    }
+    button:hover {
+      opacity: 0.8;
+    }
+  }
+}

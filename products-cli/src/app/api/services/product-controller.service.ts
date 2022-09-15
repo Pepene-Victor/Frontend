@@ -7,7 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
-import { Product } from '../models/product';
+import { ProductDto } from '../models/product-dto';
 
 /**
  * Product Controller
@@ -34,7 +34,7 @@ class ProductControllerService extends __BaseService {
    * getAllProducts
    * @return OK
    */
-  getAllProductsUsingGETResponse(): __Observable<__StrictHttpResponse<Array<Product>>> {
+  getAllProductsUsingGETResponse(): __Observable<__StrictHttpResponse<Array<ProductDto>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -51,7 +51,7 @@ class ProductControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Array<Product>>;
+        return _r as __StrictHttpResponse<Array<ProductDto>>;
       })
     );
   }
@@ -59,9 +59,9 @@ class ProductControllerService extends __BaseService {
    * getAllProducts
    * @return OK
    */
-  getAllProductsUsingGET(): __Observable<Array<Product>> {
+  getAllProductsUsingGET(): __Observable<Array<ProductDto>> {
     return this.getAllProductsUsingGETResponse().pipe(
-      __map(_r => _r.body as Array<Product>)
+      __map(_r => _r.body as Array<ProductDto>)
     );
   }
 
@@ -70,7 +70,7 @@ class ProductControllerService extends __BaseService {
    * @param product product
    * @return OK
    */
-  createProductUsingPOSTResponse(product: Product): __Observable<__StrictHttpResponse<Product>> {
+  createProductUsingPOSTResponse(product: ProductDto): __Observable<__StrictHttpResponse<ProductDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -88,7 +88,7 @@ class ProductControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Product>;
+        return _r as __StrictHttpResponse<ProductDto>;
       })
     );
   }
@@ -97,9 +97,9 @@ class ProductControllerService extends __BaseService {
    * @param product product
    * @return OK
    */
-  createProductUsingPOST(product: Product): __Observable<Product> {
+  createProductUsingPOST(product: ProductDto): __Observable<ProductDto> {
     return this.createProductUsingPOSTResponse(product).pipe(
-      __map(_r => _r.body as Product)
+      __map(_r => _r.body as ProductDto)
     );
   }
 
@@ -144,7 +144,7 @@ class ProductControllerService extends __BaseService {
    * @param productName productName
    * @return OK
    */
-  getProductByProductNameUsingGETResponse(productName: string): __Observable<__StrictHttpResponse<Array<Product>>> {
+  getProductByProductNameUsingGETResponse(productName: string): __Observable<__StrictHttpResponse<Array<ProductDto>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -162,7 +162,7 @@ class ProductControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Array<Product>>;
+        return _r as __StrictHttpResponse<Array<ProductDto>>;
       })
     );
   }
@@ -171,9 +171,9 @@ class ProductControllerService extends __BaseService {
    * @param productName productName
    * @return OK
    */
-  getProductByProductNameUsingGET(productName: string): __Observable<Array<Product>> {
+  getProductByProductNameUsingGET(productName: string): __Observable<Array<ProductDto>> {
     return this.getProductByProductNameUsingGETResponse(productName).pipe(
-      __map(_r => _r.body as Array<Product>)
+      __map(_r => _r.body as Array<ProductDto>)
     );
   }
 
@@ -182,7 +182,7 @@ class ProductControllerService extends __BaseService {
    * @param product product
    * @return OK
    */
-  updateProductUsingPUTResponse(product: Product): __Observable<__StrictHttpResponse<Product>> {
+  updateProductUsingPUTResponse(product: ProductDto): __Observable<__StrictHttpResponse<ProductDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -200,7 +200,7 @@ class ProductControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Product>;
+        return _r as __StrictHttpResponse<ProductDto>;
       })
     );
   }
@@ -209,9 +209,9 @@ class ProductControllerService extends __BaseService {
    * @param product product
    * @return OK
    */
-  updateProductUsingPUT(product: Product): __Observable<Product> {
+  updateProductUsingPUT(product: ProductDto): __Observable<ProductDto> {
     return this.updateProductUsingPUTResponse(product).pipe(
-      __map(_r => _r.body as Product)
+      __map(_r => _r.body as ProductDto)
     );
   }
 
@@ -220,7 +220,7 @@ class ProductControllerService extends __BaseService {
    * @param id id
    * @return OK
    */
-  getProductByIdUsingGETResponse(id: string): __Observable<__StrictHttpResponse<Product>> {
+  getProductByIdUsingGETResponse(id: string): __Observable<__StrictHttpResponse<ProductDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -238,7 +238,7 @@ class ProductControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Product>;
+        return _r as __StrictHttpResponse<ProductDto>;
       })
     );
   }
@@ -247,9 +247,9 @@ class ProductControllerService extends __BaseService {
    * @param id id
    * @return OK
    */
-  getProductByIdUsingGET(id: string): __Observable<Product> {
+  getProductByIdUsingGET(id: string): __Observable<ProductDto> {
     return this.getProductByIdUsingGETResponse(id).pipe(
-      __map(_r => _r.body as Product)
+      __map(_r => _r.body as ProductDto)
     );
   }
 }

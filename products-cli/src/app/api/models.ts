@@ -1,3 +1,3 @@
-export { Product } from './models/product';
-export { Stock } from './models/stock';
+export { ProductDto } from './models/product-dto';
+export { StockDto } from './models/stock-dto';
 export { User } from './models/user';

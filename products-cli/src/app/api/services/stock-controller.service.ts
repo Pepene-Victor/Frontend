@@ -7,7 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
-import { Stock } from '../models/stock';
+import { StockDto } from '../models/stock-dto';
 
 /**
  * Stock Controller
@@ -17,10 +17,8 @@ import { Stock } from '../models/stock';
 })
 class StockControllerService extends __BaseService {
   static readonly getAllStocksUsingGETPath = '/stocks';
-  static readonly createStockUsingPOST1Path = '/stocks/create';
   static readonly createStockUsingPOSTPath = '/stocks/create/productId';
   static readonly getStockByProductIdUsingGETPath = '/stocks/productId';
-  static readonly getStockByProductNameUsingGETPath = '/stocks/productName';
   static readonly updateStockUsingPUTPath = '/stocks/update';
 
   constructor(
@@ -34,7 +32,7 @@ class StockControllerService extends __BaseService {
    * getAllStocks
    * @return OK
    */
-  getAllStocksUsingGETResponse(): __Observable<__StrictHttpResponse<Array<Stock>>> {
+  getAllStocksUsingGETResponse(): __Observable<__StrictHttpResponse<Array<StockDto>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -51,7 +49,7 @@ class StockControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Array<Stock>>;
+        return _r as __StrictHttpResponse<Array<StockDto>>;
       })
     );
   }
@@ -59,47 +57,9 @@ class StockControllerService extends __BaseService {
    * getAllStocks
    * @return OK
    */
-  getAllStocksUsingGET(): __Observable<Array<Stock>> {
+  getAllStocksUsingGET(): __Observable<Array<StockDto>> {
     return this.getAllStocksUsingGETResponse().pipe(
-      __map(_r => _r.body as Array<Stock>)
-    );
-  }
-
-  /**
-   * createStock
-   * @param stock stock
-   * @return OK
-   */
-  createStockUsingPOST1Response(stock: Stock): __Observable<__StrictHttpResponse<Stock>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    __body = stock;
-    let req = new HttpRequest<any>(
-      'POST',
-      this.rootUrl + `/stocks/create`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
-      __map((_r) => {
-        return _r as __StrictHttpResponse<Stock>;
-      })
-    );
-  }
-  /**
-   * createStock
-   * @param stock stock
-   * @return OK
-   */
-  createStockUsingPOST1(stock: Stock): __Observable<Stock> {
-    return this.createStockUsingPOST1Response(stock).pipe(
-      __map(_r => _r.body as Stock)
+      __map(_r => _r.body as Array<StockDto>)
     );
   }
 
@@ -107,17 +67,17 @@ class StockControllerService extends __BaseService {
    * createStock
    * @param params The `StockControllerService.CreateStockUsingPOSTParams` containing the following parameters:
    *
-   * - `stock`: stock
+   * - `stockDto`: stockDto
    *
    * - `productId`: productId
    *
    * @return OK
    */
-  createStockUsingPOSTResponse(params: StockControllerService.CreateStockUsingPOSTParams): __Observable<__StrictHttpResponse<Stock>> {
+  createStockUsingPOSTResponse(params: StockControllerService.CreateStockUsingPOSTParams): __Observable<__StrictHttpResponse<StockDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = params.stock;
+    __body = params.stockDto;
     if (params.productId != null) __params = __params.set('productId', params.productId.toString());
     let req = new HttpRequest<any>(
       'POST',
@@ -132,7 +92,7 @@ class StockControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Stock>;
+        return _r as __StrictHttpResponse<StockDto>;
       })
     );
   }
@@ -140,15 +100,15 @@ class StockControllerService extends __BaseService {
    * createStock
    * @param params The `StockControllerService.CreateStockUsingPOSTParams` containing the following parameters:
    *
-   * - `stock`: stock
+   * - `stockDto`: stockDto
    *
    * - `productId`: productId
    *
    * @return OK
    */
-  createStockUsingPOST(params: StockControllerService.CreateStockUsingPOSTParams): __Observable<Stock> {
+  createStockUsingPOST(params: StockControllerService.CreateStockUsingPOSTParams): __Observable<StockDto> {
     return this.createStockUsingPOSTResponse(params).pipe(
-      __map(_r => _r.body as Stock)
+      __map(_r => _r.body as StockDto)
     );
   }
 
@@ -157,7 +117,7 @@ class StockControllerService extends __BaseService {
    * @param productId productId
    * @return OK
    */
-  getStockByProductIdUsingGETResponse(productId: string): __Observable<__StrictHttpResponse<Stock>> {
+  getStockByProductIdUsingGETResponse(productId: string): __Observable<__StrictHttpResponse<StockDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -175,7 +135,7 @@ class StockControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Stock>;
+        return _r as __StrictHttpResponse<StockDto>;
       })
     );
   }
@@ -184,60 +144,22 @@ class StockControllerService extends __BaseService {
    * @param productId productId
    * @return OK
    */
-  getStockByProductIdUsingGET(productId: string): __Observable<Stock> {
+  getStockByProductIdUsingGET(productId: string): __Observable<StockDto> {
     return this.getStockByProductIdUsingGETResponse(productId).pipe(
-      __map(_r => _r.body as Stock)
-    );
-  }
-
-  /**
-   * getStockByProductName
-   * @param productName productName
-   * @return OK
-   */
-  getStockByProductNameUsingGETResponse(productName: string): __Observable<__StrictHttpResponse<Array<Stock>>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    if (productName != null) __params = __params.set('productName', productName.toString());
-    let req = new HttpRequest<any>(
-      'GET',
-      this.rootUrl + `/stocks/productName`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
-      __map((_r) => {
-        return _r as __StrictHttpResponse<Array<Stock>>;
-      })
-    );
-  }
-  /**
-   * getStockByProductName
-   * @param productName productName
-   * @return OK
-   */
-  getStockByProductNameUsingGET(productName: string): __Observable<Array<Stock>> {
-    return this.getStockByProductNameUsingGETResponse(productName).pipe(
-      __map(_r => _r.body as Array<Stock>)
+      __map(_r => _r.body as StockDto)
     );
   }
 
   /**
    * updateStock
-   * @param stock stock
+   * @param stockDto stockDto
    * @return OK
    */
-  updateStockUsingPUTResponse(stock: Stock): __Observable<__StrictHttpResponse<Stock>> {
+  updateStockUsingPUTResponse(stockDto: StockDto): __Observable<__StrictHttpResponse<StockDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = stock;
+    __body = stockDto;
     let req = new HttpRequest<any>(
       'PUT',
       this.rootUrl + `/stocks/update`,
@@ -251,18 +173,18 @@ class StockControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Stock>;
+        return _r as __StrictHttpResponse<StockDto>;
       })
     );
   }
   /**
    * updateStock
-   * @param stock stock
+   * @param stockDto stockDto
    * @return OK
    */
-  updateStockUsingPUT(stock: Stock): __Observable<Stock> {
-    return this.updateStockUsingPUTResponse(stock).pipe(
-      __map(_r => _r.body as Stock)
+  updateStockUsingPUT(stockDto: StockDto): __Observable<StockDto> {
+    return this.updateStockUsingPUTResponse(stockDto).pipe(
+      __map(_r => _r.body as StockDto)
     );
   }
 }
@@ -275,9 +197,9 @@ module StockControllerService {
   export interface CreateStockUsingPOSTParams {
 
     /**
-     * stock
+     * stockDto
      */
-    stock: Stock;
+    stockDto: StockDto;
 
     /**
      * productId

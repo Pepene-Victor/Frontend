@@ -1,0 +1,41 @@
+.main-container{
+  border: 3px solid #f1f1f1;
+  width: 35%;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 0 0 2rem;
+  h1{
+    color: dodgerblue;
+  }
+  .info-container{
+    background-color: rgba(205, 205, 200, 0.5);
+    border: 3px solid #f1f1f1;
+    div{
+      display: flex;
+      justify-content: space-between;
+      .info{
+        background-color: rgba(190, 190, 185, 0.5);
+        padding: 5px;
+        border-radius: 10px;
+      }
+      button{
+        background-color: dodgerblue;
+        padding: 2px 5px;
+        width: 10%;
+        border-radius: 5px;
+      }
+      button:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+  .change-pw{
+    padding: 20px 0px 0px 0px;
+    span{
+      color: dodgerblue;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+
+}

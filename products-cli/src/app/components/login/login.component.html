@@ -1,0 +1,30 @@
+<title>Login</title>
+<form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+  <div class="logo-container">
+    <img class="logo" src="../../../assets/logo.png" alt="logo image"/>
+  </div>
+  <div class="container">
+    <span class="p-float-label">
+      <input id="username" type="text" pInputText required formControlName="username">
+      <label for="username">Username</label>
+    </span>
+    <span class="p-float-label">
+      <input id="pw" type="password" pInputText required formControlName="password">
+      <label for="pw">Password</label>
+    </span>
+    <span class="p-error" *ngIf="showError">Username or password is incorrect. Make sure both username and password are valid</span>
+    <div>
+      <span class="forgot-password">Forgot password</span>
+      <div>
+        <p-checkbox [binary]="true" id="checkbox"></p-checkbox>
+        <label for="checkbox">  Remember me</label>
+      </div>
+    </div>
+  </div>
+  <div class="buttons-container">
+    <button pButton type="submit" label="Sign in"></button>
+    <button pButton type="button" label="Create account" routerLink="/register" ></button>
+  </div>
+</form>
+
+

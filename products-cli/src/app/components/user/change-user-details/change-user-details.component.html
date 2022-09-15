@@ -1,0 +1,35 @@
+<title>Account manager</title>
+<form [formGroup]="editForm" (ngSubmit)="submitForm()">
+  <div class="logo-container">
+    <img class="logo" src="../../../assets/logo.png" alt="logo image"/>
+  </div>
+  <div class="container">
+    <h2>Change {{accountDetailsType}}</h2>
+    <div class="change-username-container" *ngIf="accountDetailsType == 'username' ">
+      <span class="p-float-label">
+        <input id="new-username" type="text" pInputText formControlName="username">
+        <label for="new-username">New username</label>
+      </span>
+    </div>
+    <div class="change-password-container" *ngIf="accountDetailsType == 'password' ">
+      <span class="p-float-label">
+        <input id="pw" type="password" pInputText formControlName="password">
+        <label for="pw">New Password</label>
+      </span>
+      <span class="p-float-label">
+        <input id="c-pw" type="password" pInputText formControlName="confirmPassword">
+        <label for="c-pw">Confirm password</label>
+      </span>
+    </div>
+    <div class="change-email-container" *ngIf="accountDetailsType == 'email'">
+      <span class="p-float-label">
+        <input id="email" type="text" pInputText formControlName="email">
+        <label for="email">New mail</label>
+      </span>
+    </div>
+  </div>
+  <div class="buttons-container">
+    <button pButton type="submit" label="Save" routerLink="/users/account-details" routerLinkActive="routerLinkActive"></button>
+    <button pButton type="button" label="Cancel" routerLink="/users/account-details"></button>
+  </div>
+</form>
