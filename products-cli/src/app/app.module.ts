@@ -4,13 +4,9 @@ import {AccordionModule} from 'primeng/accordion';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { ProductsListComponent } from './components/product/products-list/products-list.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { StockFormComponent } from './components/stock/stock-form/stock-form.component';
-import { ProductFormComponent } from './components/product/product-form/product-form.component';
-import { StockDetailsComponent } from './components/stock/stock-details/stock-details.component';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {CheckboxModule} from 'primeng/checkbox';
@@ -18,23 +14,27 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { HomeComponent } from './components/home/home.component';
 import {UserModule} from "./components/user/user.module";
-import {UserRoutingModule} from "./components/user/user-routing.module";
 import {interceptorProviders} from "./interceptors/interceptors";
+import {RippleModule} from "primeng/ripple";
+import {ConfirmationService, MessageService} from "primeng/api";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {StepsModule} from "primeng/steps";
+import {ProductModule} from "./components/product/product.module";
+import {CommonModule} from "@angular/common";
+import {ToastModule} from "primeng/toast";
+import {MenubarModule} from "primeng/menubar";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ProductsListComponent,
     HeaderComponent,
     FooterComponent,
-    StockFormComponent,
-    ProductFormComponent,
-    StockDetailsComponent,
     HomeComponent,
     RegisterComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     AccordionModule,
@@ -44,9 +44,19 @@ import {interceptorProviders} from "./interceptors/interceptors";
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    UserModule
+    UserModule,
+    RippleModule,
+    ProductModule,
+    BrowserAnimationsModule,
+    ToastModule,
+    StepsModule,
+    MenubarModule
   ],
-  providers: [interceptorProviders],
+  providers: [
+    interceptorProviders,
+    ConfirmationService,
+    MessageService
+  ],
   bootstrap: [AppComponent],
   exports: []
 })

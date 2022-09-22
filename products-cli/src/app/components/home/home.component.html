@@ -1,5 +1,8 @@
-<p>home works!</p>
-<title>Home alone</title>
-<button type="button" routerLink="/home" routerLinkActive="routerLinkActive">Home</button>
-<button type="button" routerLink="/login" routerLinkActive="routerLinkActive">Login</button>
-<button type="button" routerLink="/users/account-details" routerLinkActive="routerLinkActive" >Account</button>
+<title>Home</title>
+<div>
+  <img src="../../../assets/IMG/welcome.png" alt="logo image"/>
+  <button pButton label="Sign up" icon="pi pi-chevron-circle-right" iconPos="right" routerLink="/register" *ngIf="!isUserLogged"></button>
+  <button pButton label="Get Started" icon="pi pi-chevron-circle-right" iconPos="right" routerLink="/products" *ngIf="isUserLogged"></button>
+</div>
+
+

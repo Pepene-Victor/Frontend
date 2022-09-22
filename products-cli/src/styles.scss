@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-image: url("assets/IMG/background.png");
+  background-position: top;
+  background-size:cover;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+
+.p-ripple.green .p-ink {
+  background: rgba(0, 255, 00, 0.9);
+}
+.p-ripple.red .p-ink {
+  background: rgba(256, 0, 0, 0.9);
+}
+.p-ripple.blue .p-ink {
+  background: rgba(0, 189, 256, 0.9);
+}
+
+i{
+  border-radius: 10px;
+  justify-content: center;
+  padding: 10px;
+  cursor: pointer;
+}
+.p-steps{
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 15px;
+  margin: 0 auto;
+  .p-steps-item{
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+

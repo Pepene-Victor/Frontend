@@ -4,7 +4,7 @@ import { HttpClient, HttpRequest, HttpResponse, HttpHeaders } from '@angular/com
 import { BaseService as __BaseService } from '../base-service';
 import { ApiConfiguration as __Configuration } from '../api-configuration';
 import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-response';
-import {BehaviorSubject, Observable as __Observable, Subject} from 'rxjs';
+import {BehaviorSubject, Observable as __Observable} from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { User } from '../models/user';
@@ -16,10 +16,9 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 class UserControllerService extends __BaseService {
-  loggedUser$: BehaviorSubject<string> = new BehaviorSubject<string>("");
-  accountDetailsType$: BehaviorSubject<string> = new BehaviorSubject<string>("");
   static readonly getUserByUsernameUsingGETPath = '/user/account-details';
   static readonly registerUserUsingPOSTPath = '/user/register';
+  static readonly updateUserEmailUsingPUTPath = '/user/update-account-email';
   static readonly updateUserPasswordUsingPUTPath = '/user/update-account-password';
   static readonly updateUserNameUsingPUTPath = '/user/update-account-username';
 
@@ -28,6 +27,38 @@ class UserControllerService extends __BaseService {
     http: HttpClient
   ) {
     super(config, http);
+  }
+
+  getAccountDetailsType(){
+    let accountDetailsType = sessionStorage.getItem("accountDetailsType")
+    if(!!accountDetailsType){
+      return JSON.parse(accountDetailsType);
+    }
+  }
+  setAccountDetailsType(accountDetailsType: string){
+    sessionStorage.setItem("accountDetailsType", JSON.stringify(accountDetailsType));
+  }
+
+  getLoggedAccountUsername(){
+    let loggedAccountUsername = sessionStorage.getItem("username");
+    if(!!loggedAccountUsername) {
+      return JSON.parse(loggedAccountUsername);
+    }
+  }
+
+  setLoggedAccountUsername(loggedAccountUsername: string){
+    sessionStorage.setItem("username", JSON.stringify(loggedAccountUsername));
+  }
+
+  getIsUserLoggedStatus(){
+    let isUserLogged = sessionStorage.getItem("isUserLogged");
+    if(!!isUserLogged) {
+      return JSON.parse(isUserLogged);
+    }
+  }
+
+  setIsUserLoggedStatus(isUserLogged: boolean){
+    sessionStorage.setItem("isUserLogged", JSON.stringify(isUserLogged));
   }
 
   /**
@@ -47,7 +78,7 @@ class UserControllerService extends __BaseService {
       {
         headers: __headers,
         params: __params,
-        responseType: "json"
+        responseType: 'json'
       });
 
     return this.http.request<any>(req).pipe(
@@ -102,6 +133,44 @@ class UserControllerService extends __BaseService {
    */
   registerUserUsingPOST(user: User): __Observable<User> {
     return this.registerUserUsingPOSTResponse(user).pipe(
+      __map(_r => _r.body as User)
+    );
+  }
+
+  /**
+   * updateUserEmail
+   * @param user user
+   * @return OK
+   */
+  updateUserEmailUsingPUTResponse(user: User): __Observable<__StrictHttpResponse<User>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = user;
+    let req = new HttpRequest<any>(
+      'PUT',
+      this.rootUrl + `/user/update-account-email`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<User>;
+      })
+    );
+  }
+  /**
+   * updateUserEmail
+   * @param user user
+   * @return OK
+   */
+  updateUserEmailUsingPUT(user: User): __Observable<User> {
+    return this.updateUserEmailUsingPUTResponse(user).pipe(
       __map(_r => _r.body as User)
     );
   }

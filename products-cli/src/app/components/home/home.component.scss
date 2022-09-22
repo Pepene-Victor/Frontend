@@ -1,0 +1,13 @@
+div{
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 2rem;
+  padding: 5rem;
+  img{
+    width: 50%;
+  }
+  button{
+    width: 15%;
+    background-color: dodgerblue;
+  }
+}

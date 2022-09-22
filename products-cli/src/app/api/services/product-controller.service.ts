@@ -19,7 +19,6 @@ class ProductControllerService extends __BaseService {
   static readonly getAllProductsUsingGETPath = '/products';
   static readonly createProductUsingPOSTPath = '/products/create';
   static readonly deleteProductUsingDELETEPath = '/products/delete/{id}';
-  static readonly getProductByProductNameUsingGETPath = '/products/productName';
   static readonly updateProductUsingPUTPath = '/products/update';
   static readonly getProductByIdUsingGETPath = '/products/{id}';
 
@@ -136,44 +135,6 @@ class ProductControllerService extends __BaseService {
   deleteProductUsingDELETE(id: string): __Observable<null> {
     return this.deleteProductUsingDELETEResponse(id).pipe(
       __map(_r => _r.body as null)
-    );
-  }
-
-  /**
-   * getProductByProductName
-   * @param productName productName
-   * @return OK
-   */
-  getProductByProductNameUsingGETResponse(productName: string): __Observable<__StrictHttpResponse<Array<ProductDto>>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    if (productName != null) __params = __params.set('productName', productName.toString());
-    let req = new HttpRequest<any>(
-      'GET',
-      this.rootUrl + `/products/productName`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
-      __map((_r) => {
-        return _r as __StrictHttpResponse<Array<ProductDto>>;
-      })
-    );
-  }
-  /**
-   * getProductByProductName
-   * @param productName productName
-   * @return OK
-   */
-  getProductByProductNameUsingGET(productName: string): __Observable<Array<ProductDto>> {
-    return this.getProductByProductNameUsingGETResponse(productName).pipe(
-      __map(_r => _r.body as Array<ProductDto>)
     );
   }
 

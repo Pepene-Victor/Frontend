@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {PrimeNGConfig} from "primeng/api";
+import {MenuItem, PrimeNGConfig} from "primeng/api";
+import {ProductControllerService} from "./api/services/product-controller.service";
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,11 @@ import {PrimeNGConfig} from "primeng/api";
 export class AppComponent implements OnInit {
   title = 'products-cli';
 
-  constructor(private primengConfig: PrimeNGConfig) {}
+  constructor(private primengConfig: PrimeNGConfig, private _productService: ProductControllerService) {}
 
   ngOnInit() {
     this.primengConfig.ripple = true;
   }
+
 
 }

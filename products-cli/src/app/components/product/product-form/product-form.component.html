@@ -1,1 +1,68 @@
-<p>product-form works!</p>
+<div class="main">
+  <p-steps [model]="items" [readonly]="true" [activeIndex]="activeIndex" ></p-steps>
+  <div class="p-steps" *ngIf="activeIndex == 0">
+    <div class="stepsdemo-content">
+      <p-card>
+        <ng-template pTemplate="title">
+          New Product
+        </ng-template>
+        <ng-template pTemplate="content" [formGroup]="productForm">
+          <div class="p-fluid">
+            <div class="p-field">
+              <label for="pzn">Pzn</label>
+              <input id="pzn" type="text" pInputText formControlName="pzn">
+            </div>
+            <div class="p-field">
+              <label for="supplier">Supplier</label>
+              <input id="supplier" type="text" pInputText formControlName="supplier">
+            </div>
+            <div class="p-field">
+              <label for="product-name">Product Name</label>
+              <input id="product-name" type="text" pInputText formControlName="productName">
+            </div>
+            <div class="p-field">
+              <label for="strength">Strength</label>
+              <input id="strength" type="text" pInputText formControlName="strength">
+            </div>
+            <div class="p-field">
+              <label for="package-size">Package Size</label>
+              <input id="package-size" type="text" pInputText formControlName="packageSize">
+            </div>
+            <div class="p-field">
+              <label for="unit">Unit</label>
+              <input id="unit" type="text" pInputText formControlName="unit">
+            </div>
+          </div>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+  <div class="p-steps" *ngIf="activeIndex == 1">
+    <div class="stepsdemo-content">
+      <p-card>
+        <ng-template pTemplate="title">
+          Stock
+        </ng-template>
+        <ng-template pTemplate="content" [formGroup]="stockForm">
+          <div class="p-fluid">
+            <div class="p-field">
+              <label for="quantity">Quantity</label>
+              <input id="quantity" type="text" pInputText formControlName="quantity">
+            </div>
+            <div class="p-field">
+              <label for="price">Price</label>
+              <input id="price" type="text" pInputText formControlName="price">
+            </div>
+          </div>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+  <div class="next-button" *ngIf="activeIndex == 0">
+    <button pButton label="Next" (click)="nextPage()" icon="pi pi-angle-right" iconPos="right"></button>
+  </div>
+  <div class="stock-buttons" *ngIf="activeIndex == 1">
+    <button pButton label="Previous" icon="pi pi-angle-left" (click)="previousPage()"></button>
+    <button pButton label="Save" (click)="saveStockForProduct()" icon="pi pi-check" iconPos="right"></button>
+  </div>
+</div>

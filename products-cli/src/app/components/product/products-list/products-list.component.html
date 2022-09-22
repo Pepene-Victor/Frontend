@@ -1,1 +1,97 @@
-<p>products-list works!</p>
+<p-table #dt class="table" [value]="products" [rows]="10" [paginator]="true" [rowHover]="true"
+         [showCurrentPageReport]="true" [globalFilterFields]="['productName','pzn']"
+         currentPageReportTemplate="{first} to {last} of {totalRecords} elements" >
+  <ng-template pTemplate="caption">
+    <div>
+      <h2>Products list</h2>
+      <div>
+        <i class="pi pi-search"></i>
+        <input pInputText type="text" (input)="dt.filterGlobal(getValue($event), 'contains')" placeholder="Search" />
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Pzn</th>
+      <th>Supplier</th>
+      <th>Name</th>
+      <th>Strength</th>
+      <th>Package size</th>
+      <th>Unit</th>
+      <th>Stock details</th>
+      <th></th>
+      <th><button pButton pRipple icon="pi pi-plus-circle" routerLink="/products/add-product"></button></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{product.pzn}}</td>
+      <td>{{product.supplier}}</td>
+      <td>{{product.productName}}</td>
+      <td>{{product.strength}}</td>
+      <td>{{product.packageSize}}</td>
+      <td>{{product.unit}}</td>
+      <td>
+        <i pRipple class="pi pi-chevron-circle-right blue" (click)="stockDetails(product)"></i>
+      </td>
+      <td>
+        <i pRipple class="pi pi-pencil green" (click)="editProduct(product)"></i>
+      </td>
+      <td>
+        <i  pRipple class="pi pi-trash red" (click)="deleteProduct(product)"></i>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog [(visible)]="productDialog" [style]="{width: '500px'}" header="Edit Product" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content" [formGroup]="productForm">
+    <div class="p-field">
+      <label for="pzn">Pzn</label>
+      <input id="pzn" type="text" readonly pInputText formControlName="pzn">
+    </div>
+    <div class="p-field">
+      <label for="supplier">Supplier</label>
+      <input id="supplier" type="text" pInputText formControlName="supplier">
+    </div>
+    <div class="p-field">
+      <label for="product-name">Product Name</label>
+      <input id="product-name" type="text" pInputText formControlName="productName">
+    </div>
+    <div class="p-field">
+      <label for="strength">Strength</label>
+      <input id="strength" type="text" pInputText formControlName="strength">
+    </div>
+    <div class="p-field">
+      <label for="package-size">Package Size</label>
+      <input id="package-size" type="text" pInputText formControlName="packageSize">
+    </div>
+    <div class="p-field">
+      <label for="unit">Unit</label>
+      <input id="unit" type="text" pInputText formControlName="unit">
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text blue" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text blue" (click)="saveProduct()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="stockDialog" [style]="{width: '500px'}" header="Stock Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content" [formGroup]="stockForm">
+    <div class="p-field">
+      <label for="quantity">Quantity</label>
+      <input id="quantity" type="text" [readonly]="isReadOnly" pInputText formControlName="quantity">
+    </div>
+    <div class="p-field">
+      <label for="price">Price</label>
+      <input id="price" type="text" [readonly]="isReadOnly" pInputText formControlName="price">
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text blue" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text blue" *ngIf="isReadOnly" (click)="editStock()"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text blue" *ngIf="isReadOnly == false" (click)="saveStock()"></button>
+  </ng-template>
+</p-dialog>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

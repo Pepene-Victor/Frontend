@@ -1,8 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {first, Subscription} from "rxjs";
+import {Component, OnInit} from '@angular/core';
+import {Subscription} from "rxjs";
 import {UserControllerService} from "../../../api/services/user-controller.service";
 import {User} from "../../../api/models/user";
-import {LoginService} from "../../../api/services/login.service";
+
 
 @Component({
   selector: 'app-account-details',
@@ -13,33 +13,31 @@ export class AccountDetailsComponent implements OnInit {
   username?: string;
   email?: string;
   creationDate?: string ;
-  subscription?: Subscription;
-  subscriptionList: Subscription[] = [];
+  private _subscriptions: Subscription[] = [];
   constructor(private _userService: UserControllerService) {
   }
   ngOnInit(): void {
-    let loggedAccountUsername: string = "";
-    this.subscriptionList.push(this._userService.loggedUser$.subscribe((username: string) => {
-      loggedAccountUsername = username;
-      console.log(loggedAccountUsername);
-    }),
-    this.subscription = this._userService.getUserByUsernameUsingGET(loggedAccountUsername).subscribe((user: User) =>{
+    let loggedAccountUsername = this._userService.getLoggedAccountUsername();
+    this._subscriptions.push(this._userService.getUserByUsernameUsingGET(loggedAccountUsername).subscribe((user: User) =>{
       this.username = user.username;
       this.email = user.email;
       this.creationDate = user.creationDate;
     }));
+
   }
   ngOnDestroy(){
-    this.subscription?.unsubscribe();
+    this._subscriptions?.forEach(sub =>{
+      sub.unsubscribe();
+    })
   }
 
   changeEmail(){
-    this._userService.accountDetailsType$.next('email')
+    this._userService.setAccountDetailsType('email');
   }
   changeUsername(){
-    this._userService.accountDetailsType$.next('username')
+    this._userService.setAccountDetailsType('username');
   }
   changePassword(){
-    this._userService.accountDetailsType$.next('password')
+    this._userService.setAccountDetailsType('password');
   }
 }

@@ -1,1 +1,7 @@
-<p>header works!</p>
+<div class="header">
+  <img class="logo" src="../../../assets/logo.png" alt="logo image" routerLink="/home"/>
+    <p-menubar [model]="navItems" *ngIf="isUserLogged">
+      <button pButton label="Logout" icon="pi pi-sign-out" routerLink="/home" (click)="onLogout()"></button>
+    </p-menubar>
+  <button pButton label="Login" icon="pi pi-sign-in" routerLink="/login" *ngIf="!isUserLogged"></button>
+</div>

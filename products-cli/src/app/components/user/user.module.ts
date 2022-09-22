@@ -8,6 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {UserRoutingModule} from "./user-routing.module";
 import {AccountDetailsComponent} from "./account-details/account-details.component";
 import {ChangeUserDetailsComponent} from "./change-user-details/change-user-details.component";
+import {RippleModule} from "primeng/ripple";
 
 
 
@@ -16,15 +17,16 @@ import {ChangeUserDetailsComponent} from "./change-user-details/change-user-deta
     ChangeUserDetailsComponent,
     AccountDetailsComponent
   ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    AccordionModule,
-    InputTextModule,
-    ButtonModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    FormsModule
-  ]
+    imports: [
+        CommonModule,
+        UserRoutingModule,
+        AccordionModule,
+        InputTextModule,
+        ButtonModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        FormsModule,
+        RippleModule
+    ]
 })
 export class UserModule { }

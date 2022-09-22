@@ -4,13 +4,13 @@
     <div class="info-container">Username:
       <div>
         <span class="info">{{username}}</span>
-        <button pButton type="button" label="Edit" (click)="changeUsername()" routerLink="/users/change-user-details" routerLinkActive="routerLinkActive"></button>
+        <button pButton pRipple class="pi pi-pencil" type="button"(click)="changeUsername()" routerLink="/user/change-user-details" routerLinkActive="routerLinkActive"></button>
       </div>
     </div>
     <div class="info-container">Email:
       <div>
         <span class="info">{{email}}</span>
-        <button pButton type="button" label="Edit" (click)="changeEmail()" routerLink="/users/change-user-details" routerLinkActive="routerLinkActive"></button>
+        <button pButton pRipple class="pi pi-pencil" type="button" (click)="changeEmail()" routerLink="/user/change-user-details" routerLinkActive="routerLinkActive"></button>
       </div>
     </div>
     <div class="info-container">Account created on:
@@ -19,7 +19,7 @@
       </div>
     </div>
   <div class="change-pw">
-    <span (click)="changePassword()" routerLink="/users/change-user-details" routerLinkActive="routerLinkActive">Change password</span>
+    <span (click)="changePassword()" routerLink="/user/change-user-details" routerLinkActive="routerLinkActive">Change password</span>
   </div>
 </div>
 

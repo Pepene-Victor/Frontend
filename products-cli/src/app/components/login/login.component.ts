@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {LoginService} from "../../api/services/login.service";
 import {first, Subscription} from "rxjs";
-import {User} from "../../api/models/user";
 import {UserControllerService} from "../../api/services/user-controller.service";
 
 @Component({
@@ -30,16 +28,20 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm() {
-    const loggedUsername = this.loginForm.controls.username.value;
-    console.log(loggedUsername);
-    this._userService.loggedUser$.next(loggedUsername);
+    const loggedAccountUsername = this.loginForm.controls.username.value;
+    console.log(loggedAccountUsername);
+    this._userService.setLoggedAccountUsername(loggedAccountUsername);
     const uploadData = new FormData()
     uploadData.append('username', this.loginForm.get('username')?.value);
     uploadData.append('password', this.loginForm.get('password')?.value);
     this.subscription = this._loginService.login(uploadData).pipe(first()).subscribe({
       next: value => {
         console.log("Login Success!");
-        this._router.navigate(['/home']);
+        this._userService.setIsUserLoggedStatus(true);
+        this._router.navigate(['/home'])
+          .then(() => {
+            window.location.reload();
+          });
       },
       error: (error) => {{this.showError = true}}
     });
