@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductDto} from "../../../api/models/product-dto";
 import {Subscription} from "rxjs";
 import {ProductControllerService} from "../../../api/services/product-controller.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControlStatus, FormGroup, Validators} from "@angular/forms";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {StockControllerService} from "../../../api/services/stock-controller.service";
 import {StockDto} from "../../../api/models/stock-dto";
@@ -16,18 +16,20 @@ import {Router} from "@angular/router";
 export class ProductsListComponent implements OnInit {
   private _subscriptions: Subscription [] = [];
   private _selectedStock!: StockDto;
+  showError: string ="";
   products: ProductDto [] = [];
   productDialog: boolean = false;
   productForm!: FormGroup;
   stockDialog: boolean = false;
-  stockForm!: FormGroup;
+  stockEditForm!: FormGroup;
   isReadOnly: boolean = true;
+  formValidation: string = 'INVALID';
 
   constructor(private _fb: FormBuilder, private _productService: ProductControllerService,
               private _confirmationService: ConfirmationService, private _messageService: MessageService,
               private _stockService: StockControllerService, private _router: Router) {
   this._createProductForm();
-  this._createStockForm();
+  this._createStockEditForm();
   }
 
   ngOnInit(): void {
@@ -51,7 +53,7 @@ export class ProductsListComponent implements OnInit {
     this._subscriptions.push(this._stockService.getStockByProductIdUsingGET(product.pzn).subscribe((stock: StockDto) => {
       this._selectedStock = stock;
       if(!!this._selectedStock)
-        this.stockForm.patchValue(this._selectedStock);
+        this.stockEditForm.patchValue(this._selectedStock);
     }));
     this.stockDialog = true;
   }
@@ -77,22 +79,22 @@ export class ProductsListComponent implements OnInit {
         console.log("Product updated!");
         this._refreshPage();
       },
-      // error: (error) => {{this.showError = error.error}}
+      error: (error) => {{this.showError = error.error}}
     }));
     this.productDialog = false;
   }
   saveStock() {
     const stock: StockDto = {
       id: this._selectedStock.id,
-      price: this.stockForm.controls.price.value,
-      quantity: this.stockForm.controls.quantity.value
+      price: this.stockEditForm.controls.price.value,
+      quantity: this.stockEditForm.controls.quantity.value
     }
     this._subscriptions.push(this._stockService.updateStockUsingPUT(stock).subscribe({
       next: () => {
         console.log("Stock updated!");
         this._refreshPage();
       },
-      // error: (error) => {{this.showError = error.error}}
+      error: (error) => {{this.showError = error.error}}
     }));
 
     this.isReadOnly = true;
@@ -124,20 +126,46 @@ export class ProductsListComponent implements OnInit {
 
   private _createProductForm(){
     this.productForm = this._fb.group({
-      packageSize: [null, [Validators.required]],
-      productName: [null, [Validators.required]],
-      pzn: [null, [Validators.required]],
-      strength: [null, [Validators.required]],
-      supplier: [null,],
-      unit: [null, [Validators.required]],
-    })
+      packageSize: [null,
+        [Validators.required,
+          Validators.maxLength(20)]],
+      productName: [null,
+        [Validators.required,
+          Validators.maxLength(100)]],
+      pzn: [null,
+        [Validators.required]],
+      strength: [null,
+        [Validators.required,
+          Validators.maxLength(100)]],
+      supplier: [null,
+        [Validators.maxLength(100)]],
+      unit: [null,
+        [Validators.required,
+          Validators.maxLength(2)]],
+    });
+    this._subscriptions.push(
+      this.productForm.statusChanges.subscribe((value: FormControlStatus) =>{
+        this.formValidation = value;
+      })
+    );
   }
 
-  private _createStockForm(){
-    this.stockForm = this._fb.group({
-      quantity: [null, [Validators.required]],
-      price: [null, [Validators.required]]
-    })
+  private _createStockEditForm(){
+    this.stockEditForm = this._fb.group({
+      quantity: [null,
+        [Validators.required,
+          Validators.pattern("^[0-9]*$")
+        ]],
+      price: [null,
+        [Validators.required,
+          Validators.pattern("^[0-9.]*$")
+        ]]
+    });
+    this._subscriptions.push(
+      this.stockEditForm.statusChanges.subscribe((value: FormControlStatus) =>{
+        this.formValidation = value;
+      })
+    );
   }
 
 

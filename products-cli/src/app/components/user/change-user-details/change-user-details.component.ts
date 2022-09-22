@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControlStatus, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {UserControllerService} from "../../../api/services/user-controller.service";
 import {User} from "../../../api/models/user";
@@ -18,6 +18,7 @@ export class ChangeUserDetailsComponent implements OnInit {
   showError: any;
   editForm!: FormGroup;
   accountDetailsType: string = "";
+  formValidation: string = "INVALID";
 
 
   constructor(private _fb: FormBuilder,
@@ -105,20 +106,22 @@ export class ChangeUserDetailsComponent implements OnInit {
   private _createForm(){
     this.editForm = this._fb.group({
       password: [null,
-        [Validators.required,
-          Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[a-zA-z0-9@$!%*?&]*$"),
-          Validators.min(8),
-          Validators.max(20)]],
+        [Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[a-zA-z0-9@$!%*?&]*$"),
+          Validators.minLength(8),
+          Validators.maxLength(20)]],
       confirmPassword: [null],
       username: [null,
-        [Validators.required,
-          Validators.pattern("^[A-Za-z0-9]*$"),
-          Validators.min(5),
-          Validators.max(50)]],
+        [Validators.pattern("^[A-Za-z0-9]*$"),
+          Validators.minLength(5),
+          Validators.maxLength(50)]],
       email: [null,
-        [Validators.required,
-          Validators.email]],
-    })
-    console.log(this.editForm.getRawValue());
+        [Validators.email]]
+    });
+    this._subscriptions.push(
+      this.editForm.statusChanges.subscribe((value: FormControlStatus) =>{
+        this.formValidation = value;
+      })
+    );
+
   }
 }

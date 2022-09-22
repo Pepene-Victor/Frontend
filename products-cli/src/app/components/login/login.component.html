@@ -15,15 +15,11 @@
     <span class="p-error" *ngIf="showError">Username or password is incorrect. Make sure both username and password are valid</span>
     <div>
       <span class="forgot-password">Forgot password</span>
-      <div>
-        <p-checkbox [binary]="true" id="checkbox"></p-checkbox>
-        <label for="checkbox">  Remember me</label>
-      </div>
     </div>
   </div>
   <div class="buttons-container">
-    <button pButton pRipple type="submit" label="Sign in"></button>
     <button pButton pRipple type="button" label="Create account" routerLink="/register" ></button>
+    <button pButton pRipple type="submit" label="Sign in" [disabled]="formValidation==='INVALID'"></button>
   </div>
 </form>
 

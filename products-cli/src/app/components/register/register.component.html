@@ -9,7 +9,8 @@
       <label for="username">Username</label>
     </span>
     <span class="p-error" *ngIf="registerForm.controls.username.hasError('pattern')">
-        Username must contain only letters and numbers</span>
+        Username must contain only letters and numbers
+    </span>
     <span class="p-float-label">
       <input id="email" type="text" pInputText formControlName="email">
       <label for="email">Email</label>
@@ -20,16 +21,16 @@
       <label for="password">Password</label>
     </span>
     <span class="p-error" *ngIf="registerForm.controls.password.hasError('pattern')">
-        Username must contain at least one uppercase,one lowercase, one number and one symbol(@$!%*?&) </span>
+        Password must contain at least one uppercase,one lowercase, one number and one symbol(@$!%*?&) </span>
     <span class="p-float-label">
       <input id="confirm-password" type="password" pInputText formControlName="confirmPassword">
       <label for="confirm-password">Confirm password</label>
     </span>
-    <span class="p-error">{{showError}}</span>
     <span class="p-error" *ngIf="registerForm.controls.password.value != registerForm.controls.confirmPassword.value" >Passwords do not match</span>
+    <span class="p-error">{{showError}}</span>
   </div>
   <div class="buttons-container">
-    <button pButton pRipple type="submit" label="Create"></button>
     <button pButton pRipple type="button" label="Cancel" routerLink="/home"></button>
+    <button pButton pRipple type="submit" label="Create" [disabled]="formValidation==='INVALID' || registerForm.controls.password.value != registerForm.controls.confirmPassword.value"></button>
   </div>
 </form>
