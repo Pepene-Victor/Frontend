@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Subscription, switchMap} from "rxjs";
+import {EMPTY, map, Subscription, switchMap} from "rxjs";
 import {MenuItem} from "primeng/api";
 import {FormBuilder, FormControlStatus, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
@@ -49,6 +49,7 @@ export class StockFormComponent implements OnInit {
     this._subscriptions.forEach(sub => {
       sub.unsubscribe();
     });
+    this._stockService.isStockDetails$.next(false);
   }
 
   saveStock() {
@@ -76,7 +77,7 @@ export class StockFormComponent implements OnInit {
     const stock: StockDto = this.stockForm.getRawValue();
     const params = {stockDto: stock, productId: this.productToSave.pzn};
     this._subscriptions.push(this._productService.createProductUsingPOST(this.productToSave).pipe(
-      switchMap((product: ProductDto) => this._stockService.createStockUsingPOST(params))
+      switchMap(() => this._stockService.createStockUsingPOST(params))
     ).subscribe({
       next: () => {
         console.log("Product with stock created!");
@@ -99,15 +100,6 @@ export class StockFormComponent implements OnInit {
     }))
   }
 
-  private _getSelectedStock(){
-    this._subscriptions.push(this._stockService.stock$.subscribe({
-      next: (stock: StockDto) => {
-        this._selectedStock = stock ;
-        this.stockForm.patchValue(stock);
-    }
-    }));
-  }
-
   private _getIsReadOnlyStatus(){
     this._subscriptions.push(this._stockService.isReadOnlyStatus$.subscribe({
       next: value => {
@@ -117,12 +109,19 @@ export class StockFormComponent implements OnInit {
   }
 
   private _getIsStockDetails(){
-    this._subscriptions.push(this._stockService.isStockDetails$.subscribe({
-      next: value => {
+    this._subscriptions.push(this._stockService.isStockDetails$.pipe(
+      switchMap((value: boolean) => {
         this.isStockDetails = value;
         if(this.isStockDetails){
-          this._getSelectedStock();
+          return this._stockService.stock$.pipe(
+            map(stock => stock),);
         }
+        return EMPTY;
+      })
+    ).subscribe({
+      next: (stock: StockDto) => {
+        this._selectedStock = stock ;
+        this.stockForm.patchValue(stock);
       }
     }));
   }
@@ -131,11 +130,11 @@ export class StockFormComponent implements OnInit {
     this.stockForm = this._fb.group({
       quantity: [null,
         [Validators.required,
-          Validators.pattern("^[0-9]*$")
+          Validators.pattern("^[1-9][0-9]*$")
         ]],
       price: [null,
         [Validators.required,
-          Validators.pattern("^[0-9.]*$")]]
+          Validators.pattern("^(-?)(0|([1-9][0-9]*))(\\.[0-9]+)?$")]]
     });
     this._subscriptions.push(
       this.stockForm.statusChanges.subscribe((value: FormControlStatus) =>{

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {first, Subscription} from "rxjs";
+import {EMPTY, map, Subscription, switchMap} from "rxjs";
 import {ProductDto} from "../../../api/models/product-dto";
 import {FormBuilder, FormControlStatus, FormGroup, Validators} from "@angular/forms";
 import {MenuItem} from "primeng/api";
@@ -31,12 +31,18 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._subscriptions.push( this._productService.isEdit$.subscribe({
-      next: (value: boolean) => {
+    this._subscriptions.push( this._productService.isEdit$.pipe(
+      switchMap((value: boolean) => {
         this.editProduct = value;
         if(this.editProduct){
-          this._getProduct();
+          return this._productService.product$.pipe(
+            map(product => product));
         }
+        return EMPTY;
+      })
+    ).subscribe({
+      next: (product: ProductDto) => {
+        this.productForm.patchValue(product);
       }
     }));
   }
@@ -59,14 +65,6 @@ export class ProductFormComponent implements OnInit {
   onNext() {
     this._productService.productToBeCreated$.next(this.productForm.getRawValue());
     this._productService.activeIndex$.next(1);
-  }
-
-  private _getProduct(){
-    this._subscriptions.push( this._productService.product$.subscribe({
-      next: (product: ProductDto) => {
-        this.productForm.patchValue(product);
-      }
-    }));
   }
 
   private _patchValueOfProductSteps(){

@@ -21,7 +21,7 @@ class StockControllerService extends __BaseService {
   stockDialog$: Subject<boolean> = new Subject<boolean>();
   stock$: BehaviorSubject<StockDto> = new BehaviorSubject<StockDto>({} as StockDto);
   stockToBeCreated$: BehaviorSubject<StockDto> = new BehaviorSubject<StockDto>({} as StockDto);
-  isStockDetails$: Subject<boolean> = new Subject<boolean>();
+  isStockDetails$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   static readonly getAllStocksUsingGETPath = '/stocks';
   static readonly createStockUsingPOSTPath = '/stocks/create/productId';
   static readonly getStockByProductIdUsingGETPath = '/stocks/productId';

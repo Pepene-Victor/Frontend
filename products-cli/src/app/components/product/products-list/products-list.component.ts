@@ -53,8 +53,8 @@ export class ProductsListComponent implements OnInit {
       if(!!this._selectedStock){
         this._stockService.isReadOnlyStatus$.next(true);
         this._stockService.isStockDetails$.next(true);
-      }
         this._stockService.stock$.next(this._selectedStock);
+      }
     }));
     this.stockDialog = true;
   }

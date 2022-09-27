@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Subscription} from "rxjs";
 import {UserControllerService} from "../../../api/services/user-controller.service";
-import {User} from "../../../api/models/user";
+
 
 @Component({
   selector: 'app-account-details',
@@ -12,7 +11,6 @@ export class AccountDetailsComponent implements OnInit {
   username?: string;
   email?: string;
   creationDate?: string ;
-  private _subscriptions: Subscription[] = [];
 
   constructor(private _userService: UserControllerService) {
   }
@@ -22,12 +20,6 @@ export class AccountDetailsComponent implements OnInit {
     this.username = loggedAccount.username;
     this.email = loggedAccount.email;
     this.creationDate = loggedAccount.creationDate;
-  }
-
-  ngOnDestroy(){
-    this._subscriptions?.forEach(sub =>{
-      sub.unsubscribe();
-    })
   }
 
   changeEmail(){
