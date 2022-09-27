@@ -9,14 +9,19 @@ import {UserRoutingModule} from "./user-routing.module";
 import {AccountDetailsComponent} from "./account-details/account-details.component";
 import {ChangeUserDetailsComponent} from "./change-user-details/change-user-details.component";
 import {RippleModule} from "primeng/ripple";
+import { UserFormComponent } from './user-form/user-form.component';
 
 
 
 @NgModule({
-  declarations: [
-    ChangeUserDetailsComponent,
-    AccountDetailsComponent
-  ],
+    declarations: [
+        ChangeUserDetailsComponent,
+        AccountDetailsComponent,
+        UserFormComponent
+    ],
+    exports: [
+        UserFormComponent
+    ],
     imports: [
         CommonModule,
         UserRoutingModule,

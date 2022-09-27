@@ -1,0 +1,10 @@
+<title>Add product</title>
+<div class="main">
+  <p-steps [model]="items" [readonly]="true" [activeIndex]="activeIndex" ></p-steps>
+  <div class="p-steps" *ngIf="activeIndex == 0">
+      <app-product-form></app-product-form>
+  </div>
+  <div class="p-steps" *ngIf="activeIndex == 1">
+      <app-stock-form></app-stock-form>
+  </div>
+</div>

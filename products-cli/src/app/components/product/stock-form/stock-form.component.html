@@ -1,0 +1,36 @@
+<!--<div class="p-steps" *ngIf="activeIndex == 1">-->
+<!--<div class="stepsdemo-content">-->
+  <p-card>
+    <ng-template pTemplate="title">
+      Stock
+    </ng-template>
+    <span class="p-error" *ngIf="formValidation==='INVALID'">Fields are required</span>
+    <ng-template pTemplate="content" [formGroup]="stockForm">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="quantity">Quantity</label>
+          <input id="quantity" type="text" pInputText formControlName="quantity" [readOnly]="isReadOnly">
+          <span class="p-error" *ngIf="stockForm.controls.quantity.hasError('pattern')">
+               Value must be a number!
+              </span>
+        </div>
+        <div class="p-field">
+          <label for="price">Price</label>
+          <input id="price" type="text" pInputText formControlName="price" [readOnly]="isReadOnly">
+          <span class="p-error" *ngIf="stockForm.controls.price.hasError('pattern')">
+                Invalid value! Ex: 20.99
+              </span>
+          <span class="p-error">{{showError}}</span>
+        </div>
+      </div>
+      <div class="stock-details-buttons" *ngIf="isStockDetails">
+        <button pButton pRipple label="Save" class="p-button-text blue" [disabled]="formValidation==='INVALID'" *ngIf="!isReadOnly" (click)="saveStock()"></button>
+      </div>
+      <div class="steps-buttons" *ngIf="!isStockDetails">
+        <button pButton pRipple label="Previous" class="p-button-text blue" icon="pi pi-angle-left" (click)="previousPage()"></button>
+        <button pButton pRipple label="Create" class="p-button-text blue" (click)="createProduct()" [disabled]="formValidation==='INVALID'" icon="pi pi-check" iconPos="right"></button>
+      </div>
+    </ng-template>
+  </p-card>
+<!--</div>-->
+<!--</div>-->

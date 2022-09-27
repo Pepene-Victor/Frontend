@@ -1,6 +1,7 @@
+<title>Products list</title>
 <p-table #dt class="table" [value]="products" [rows]="10" [paginator]="true" [rowHover]="true"
          [showCurrentPageReport]="true" [globalFilterFields]="['productName','pzn']"
-         currentPageReportTemplate="{first} to {last} of {totalRecords} elements" >
+         currentPageReportTemplate="{first} to {last} of {totalRecords} records" >
   <ng-template pTemplate="caption">
     <div>
       <h2>Products list</h2>
@@ -45,94 +46,17 @@
 </p-table>
 
 <p-dialog [(visible)]="productDialog" [style]="{width: '500px'}" header="Edit Product" [modal]="true" styleClass="p-fluid">
-  <ng-template pTemplate="content" [formGroup]="productForm">
-    <div class="p-field">
-      <label for="pzn">Pzn</label>
-      <input id="pzn" type="text" readonly pInputText formControlName="pzn">
-    </div>
-    <div class="p-field">
-      <label for="supplier">Supplier</label>
-      <input id="supplier" type="text" pInputText formControlName="supplier">
-      <span class="p-error" *ngIf="productForm.controls.supplier.hasError('maxlength')">
-        Max length: 100
-      </span>
-    </div>
-    <div class="p-field">
-      <label for="product-name">Product Name</label>
-      <input id="product-name" type="text" pInputText formControlName="productName">
-      <span class="p-error" *ngIf="productForm.controls.productName.hasError('required')">
-        Field required!
-      </span>
-      <span class="p-error" *ngIf="productForm.controls.productName.hasError('maxlength')">
-        Max length: 100
-      </span>
-    </div>
-    <div class="p-field">
-      <label for="strength">Strength</label>
-      <input id="strength" type="text" pInputText formControlName="strength">
-      <span class="p-error" *ngIf="productForm.controls.strength.hasError('required')">
-        Field required!
-      </span>
-      <span class="p-error" *ngIf="productForm.controls.strength.hasError('maxlength')">
-        Max length: 100
-      </span>
-    </div>
-    <div class="p-field">
-      <label for="package-size">Package Size</label>
-      <input id="package-size" type="text" pInputText formControlName="packageSize">
-      <span class="p-error" *ngIf="productForm.controls.packageSize.hasError('required')">
-        Field required!
-      </span>
-      <span class="p-error" *ngIf="productForm.controls.packageSize.hasError('maxlength')">
-        Max length: 20
-      </span>
-    </div>
-    <div class="p-field">
-      <label for="unit">Unit</label>
-      <input id="unit" type="text" pInputText formControlName="unit">
-      <span class="p-error" *ngIf="productForm.controls.unit.hasError('required')">
-        Field required!
-      </span>
-      <span class="p-error" *ngIf="productForm.controls.unit.hasError('maxlength')">
-        Max length: 2
-      </span>
-    </div>
-    <span class="p-error">{{showError}}</span>
-  </ng-template>
+  <app-product-form></app-product-form>
   <ng-template pTemplate="footer">
     <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text blue" (click)="hideDialog()"></button>
-    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text blue" [disabled]="formValidation==='INVALID'"(click)="saveProduct()"></button>
   </ng-template>
 </p-dialog>
 
 <p-dialog [(visible)]="stockDialog" [style]="{width: '500px'}" header="Stock Details" [modal]="true" styleClass="p-fluid">
-  <ng-template pTemplate="content" [formGroup]="stockEditForm">
-    <div class="p-field">
-      <label for="quantity">Quantity</label>
-      <input id="quantity" type="text" [readonly]="isReadOnly" pInputText formControlName="quantity">
-      <span class="p-error" *ngIf="stockEditForm.controls.quantity.hasError('required')">
-        Field required!
-      </span>
-      <span class="p-error" *ngIf="stockEditForm.controls.quantity.hasError('pattern')">
-        Value must be a number!
-      </span>
-    </div>
-    <div class="p-field">
-      <label for="price">Price</label>
-      <input id="price" type="text" [readonly]="isReadOnly" pInputText formControlName="price">
-      <span class="p-error" *ngIf="stockEditForm.controls.price.hasError('required')">
-        Field required!
-      </span>
-      <span class="p-error" *ngIf="stockEditForm.controls.price.hasError('pattern')">
-        Invalid value! Ex: 20.99
-      </span>
-    </div>
-    <span class="p-error">{{showError}}</span>
-  </ng-template>
+ <app-stock-form></app-stock-form>
   <ng-template pTemplate="footer">
     <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text blue" (click)="hideDialog()"></button>
     <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text blue" *ngIf="isReadOnly" (click)="editStock()"></button>
-    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text blue" [disabled]="formValidation==='INVALID'" *ngIf="isReadOnly == false" (click)="saveStock()"></button>
   </ng-template>
 </p-dialog>
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

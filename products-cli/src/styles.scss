@@ -3,8 +3,10 @@ body {
   background-position: top;
   background-size:cover;
   background-repeat: no-repeat;
+  margin: 0;
+  position: relative;
+  min-height: 100vh;
 }
-
 .p-ripple.green .p-ink {
   background: rgba(0, 255, 00, 0.9);
 }
@@ -27,8 +29,6 @@ i{
   border-radius: 15px;
   margin: 0 auto;
   .p-steps-item{
-    display: flex;
-    justify-content: flex-end;
   }
 }
 

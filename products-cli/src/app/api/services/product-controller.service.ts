@@ -4,7 +4,7 @@ import { HttpClient, HttpRequest, HttpResponse, HttpHeaders } from '@angular/com
 import { BaseService as __BaseService } from '../base-service';
 import { ApiConfiguration as __Configuration } from '../api-configuration';
 import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-response';
-import { Observable as __Observable } from 'rxjs';
+import {BehaviorSubject, Observable as __Observable, Subject} from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { ProductDto } from '../models/product-dto';
@@ -16,11 +16,19 @@ import { ProductDto } from '../models/product-dto';
   providedIn: 'root',
 })
 class ProductControllerService extends __BaseService {
+
+  isEdit$: Subject<boolean> = new Subject<boolean>();
+  productDialog$: Subject<boolean> = new Subject<boolean>();
+  product$: BehaviorSubject<ProductDto> = new BehaviorSubject<ProductDto>({} as ProductDto);
+  productToBeCreated$: BehaviorSubject<ProductDto> = new BehaviorSubject<ProductDto>({} as ProductDto);
+  activeIndex$: Subject<number> = new Subject<number>();
+
   static readonly getAllProductsUsingGETPath = '/products';
   static readonly createProductUsingPOSTPath = '/products/create';
   static readonly deleteProductUsingDELETEPath = '/products/delete/{id}';
   static readonly updateProductUsingPUTPath = '/products/update';
   static readonly getProductByIdUsingGETPath = '/products/{id}';
+
 
   constructor(
     config: __Configuration,

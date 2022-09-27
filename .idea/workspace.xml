@@ -2,18 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5b3c002-0e42-494b-8c08-303ad437d956" name="Changes" comment="&quot;new-code&quot;">
+      <change afterPath="$PROJECT_DIR$/products-cli/src/app/api/services/auth-guard.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/api/services/login.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/api/services/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/api/services/product-controller.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/api/services/product-controller.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/api/services/stock-controller.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/api/services/stock-controller.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/api/services/user-controller.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/api/services/user-controller.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/app.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/footer/footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/footer/footer.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/footer/footer.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/footer/footer.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/header/header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/header/header.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/home/home.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/home/home.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/login/login.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/login/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/product/product-form/product-form.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/product/product-form/product-form.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/product/product-form/product-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/product/product-form/product-form.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/product/product-form/product-form.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/product/product-form/product-form.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/product/product-form/product-form.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/product/product-form/product-form.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/product/product-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/product/product-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/product/product.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/product/product.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/product/products-list/products-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/product/products-list/products-list.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/product/products-list/products-list.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/product/products-list/products-list.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/product/products-list/products-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/product/products-list/products-list.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/register/register.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/register/register.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/register/register.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/register/register.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/register/register.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/register/register.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/user/account-details/account-details.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/account-details/account-details.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/user/account-details/account-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/account-details/account-details.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/user/change-user-details/change-user-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/change-user-details/change-user-details.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/user/change-user-details/change-user-details.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/change-user-details/change-user-details.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/user/change-user-details/change-user-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/change-user-details/change-user-details.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/app/components/user/user.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/app/components/user/user.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products-cli/src/assets/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/assets/logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/products-cli/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/products-cli/src/styles.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,11 +81,11 @@
       <recent name="C:\Users\Victor\Desktop\Final project\Frontend\products-cli\src\assets\IMG" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Victor\Desktop\Final project\Frontend\products-cli\src\assets" />
+      <recent name="C:\Users\Victor\Desktop\Final project\Frontend\products-cli\src\app\components\product" />
       <recent name="C:\Users\Victor\Desktop\Final project\Frontend\products-cli\src\app\api\services" />
       <recent name="C:\Users\Victor\Desktop\Final project\Frontend\products-cli\src\app\components" />
       <recent name="C:\Users\Victor\Desktop\Final project\Frontend\products-cli\src\app\api" />
-      <recent name="C:\Users\Victor\Desktop\Final project\Frontend\products-cli\src\app" />
-      <recent name="C:\Users\Victor\Desktop\Final project\Frontend\products-cli\src\app\components\product\steps-add-product" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -95,6 +119,19 @@
       <workItem from="1663760563357" duration="1013000" />
       <workItem from="1663785724011" duration="1208000" />
       <workItem from="1663842032906" duration="24310000" />
+      <workItem from="1663868553902" duration="76000" />
+      <workItem from="1663922035744" duration="23855000" />
+      <workItem from="1664007522562" duration="12241000" />
+      <workItem from="1664098271755" duration="6874000" />
+      <workItem from="1664169180512" duration="3180000" />
+      <workItem from="1664172419245" duration="643000" />
+      <workItem from="1664207027395" duration="4000" />
+      <workItem from="1664207059637" duration="132000" />
+      <workItem from="1664207207375" duration="11190000" />
+      <workItem from="1664218598951" duration="316000" />
+      <workItem from="1664218929978" duration="2369000" />
+      <workItem from="1664223049973" duration="1612000" />
+      <workItem from="1664267963632" duration="11681000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;new-code&quot;">
       <created>1662627749717</created>

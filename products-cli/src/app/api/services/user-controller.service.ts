@@ -4,7 +4,7 @@ import { HttpClient, HttpRequest, HttpResponse, HttpHeaders } from '@angular/com
 import { BaseService as __BaseService } from '../base-service';
 import { ApiConfiguration as __Configuration } from '../api-configuration';
 import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-response';
-import {BehaviorSubject, Observable as __Observable} from 'rxjs';
+import {BehaviorSubject, Observable as __Observable, Subject} from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { User } from '../models/user';
@@ -30,35 +30,47 @@ class UserControllerService extends __BaseService {
   }
 
   getAccountDetailsType(){
-    let accountDetailsType = sessionStorage.getItem("accountDetailsType")
+    let accountDetailsType = localStorage.getItem("accountDetailsType")
     if(!!accountDetailsType){
       return JSON.parse(accountDetailsType);
     }
   }
+
   setAccountDetailsType(accountDetailsType: string){
-    sessionStorage.setItem("accountDetailsType", JSON.stringify(accountDetailsType));
+    localStorage.setItem("accountDetailsType", JSON.stringify(accountDetailsType));
   }
 
   getLoggedAccountUsername(){
-    let loggedAccountUsername = sessionStorage.getItem("username");
+    let loggedAccountUsername = localStorage.getItem("username");
     if(!!loggedAccountUsername) {
       return JSON.parse(loggedAccountUsername);
     }
   }
 
   setLoggedAccountUsername(loggedAccountUsername: string){
-    sessionStorage.setItem("username", JSON.stringify(loggedAccountUsername));
+    localStorage.setItem("username", JSON.stringify(loggedAccountUsername));
   }
 
-  getIsUserLoggedStatus(){
-    let isUserLogged = sessionStorage.getItem("isUserLogged");
-    if(!!isUserLogged) {
-      return JSON.parse(isUserLogged);
+  getLoggedAccount(){
+    let loggedAccount = localStorage.getItem("user");
+    if(!!loggedAccount) {
+      return JSON.parse(loggedAccount);
     }
   }
 
-  setIsUserLoggedStatus(isUserLogged: boolean){
-    sessionStorage.setItem("isUserLogged", JSON.stringify(isUserLogged));
+  setLoggedAccount(loggedAccount: User){
+    localStorage.setItem("user", JSON.stringify(loggedAccount));
+  }
+
+  getIsLoggedIn(){
+    let isLoggedIn = localStorage.getItem("loginStatus");
+    if(!!isLoggedIn) {
+      return JSON.parse(isLoggedIn);
+    }
+  }
+
+  setIsLoggedIn(isLoggedIn: boolean){
+    localStorage.setItem("loginStatus", JSON.stringify(isLoggedIn));
   }
 
   /**

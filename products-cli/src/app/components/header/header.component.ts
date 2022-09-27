@@ -4,7 +4,9 @@ import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {UserControllerService} from "../../api/services/user-controller.service";
 import {Subscription} from "rxjs";
-import {LoginService} from "../../api/services/login.service";
+import {AuthService} from "../../api/services/auth.service";
+import {AuthGuardService} from "../../api/services/auth-guard.service";
+import {User} from "../../api/models/user";
 
 @Component({
   selector: 'app-header',
@@ -12,13 +14,14 @@ import {LoginService} from "../../api/services/login.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  isUserLogged: boolean = false;
   private _subscriptions: Subscription[] = [];
+  isUserLogged?: boolean;
   navItems: MenuItem [] = [];
   constructor(private _router: Router,
               private _http: HttpClient,
-              private _userService: UserControllerService,
-              private _loginService: LoginService) { }
+              private _loginService: AuthService,
+              private _authGuardService: AuthGuardService,
+              private _userService: UserControllerService) { }
 
   ngOnInit(): void {
     this.navItems = [
@@ -33,11 +36,10 @@ export class HeaderComponent implements OnInit {
       {
         label: 'Account',
         icon: 'pi pi-user',
-        routerLink: 'account-details'
+        routerLink: 'user/account-details'
       }
     ];
-    this.isUserLogged = this._userService.getIsUserLoggedStatus();
-    console.log(this.isUserLogged);
+    this.isUserLogged = this._userService.getIsLoggedIn();
   }
 
   ngOnDestroy(){
@@ -46,10 +48,10 @@ export class HeaderComponent implements OnInit {
     })
   }
   onLogout() {
-    this._userService.setIsUserLoggedStatus(false);
     this._subscriptions.push(this._loginService.logout().subscribe({
       next: () => {
         console.log('Logout Success!');
+        localStorage.clear();
         this._router.navigate(['/home'])
           .then(() => {
           window.location.reload();
@@ -62,5 +64,4 @@ export class HeaderComponent implements OnInit {
       }
     }));
   }
-
 }

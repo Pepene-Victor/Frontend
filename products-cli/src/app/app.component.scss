@@ -1,1 +1,7 @@
-
+.main{
+  display: grid;
+  grid-gap: 4rem;
+  .content-wrap{
+    padding-bottom: 2.5rem;
+  }
+}

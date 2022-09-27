@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {first, Subscription} from "rxjs";
+import {ProductDto} from "../../../api/models/product-dto";
 import {FormBuilder, FormControlStatus, FormGroup, Validators} from "@angular/forms";
+import {MenuItem} from "primeng/api";
 import {ProductControllerService} from "../../../api/services/product-controller.service";
 import {Router} from "@angular/router";
-import {MenuItem} from "primeng/api";
-import {ProductDto} from "../../../api/models/product-dto";
-import {Subscription} from "rxjs";
-import {StockDto} from "../../../api/models/stock-dto";
-import {StockControllerService} from "../../../api/services/stock-controller.service";
 
 @Component({
   selector: 'app-product-form',
@@ -14,78 +12,75 @@ import {StockControllerService} from "../../../api/services/stock-controller.ser
   styleUrls: ['./product-form.component.scss']
 })
 export class ProductFormComponent implements OnInit {
+
   private _subscriptions: Subscription [] = [];
-  private _savedProduct!: ProductDto;
   productForm!: FormGroup;
-  activeIndex: number = 0;
   items: MenuItem [] = [];
-  stockForm!: FormGroup;
   formValidation: string = 'INVALID';
   showError: string = "";
+  editProduct: boolean = false;
+
 
   constructor(private _fb: FormBuilder,
               private _productService: ProductControllerService,
-              private _router: Router,
-              private _stockService: StockControllerService) {
+              private _router: Router) {
     this._createProductForm();
-    this._createStockForm();
+    this._patchValueOfProductSteps();
+    const product: ProductDto = this.productForm.getRawValue();
+    this._productService.product$.next(product);
   }
 
   ngOnInit(): void {
-    this.items = [{
-      label: 'Product',
-    },
-      {
-        label: 'Stock',
+    this._subscriptions.push( this._productService.isEdit$.subscribe({
+      next: (value: boolean) => {
+        this.editProduct = value;
+        if(this.editProduct){
+          this._getProduct();
+        }
       }
-    ];
+    }));
   }
   ngOnDestroy(){
     this._subscriptions.forEach(sub => {
       sub.unsubscribe();
-    })
-  }
-
-  nextPage() {
-    this.activeIndex = 1;
+    });
   }
   saveProduct() {
     const product: ProductDto = this.productForm.getRawValue();
-    while(product.pzn.length < 8){
-      product.pzn = '0' + product.pzn;
-    }
-    this._subscriptions.push(this._productService.createProductUsingPOST(product).subscribe({
+    this._subscriptions.push(this._productService.updateProductUsingPUT(product).subscribe({
       next: () => {
-        console.log("Product created!");
-        this.saveStockForProduct();
+        console.log("Product updated!");
       },
       error: (error) => {{this.showError = error.error}}
     }));
-    this._savedProduct = product;
+    this._productService.productDialog$.next(false);
+    this._productService.product$.next(product);
+  }
+  onNext() {
+    this._productService.productToBeCreated$.next(this.productForm.getRawValue());
+    this._productService.activeIndex$.next(1);
+  }
 
-  }
-  saveStockForProduct(){
-    const stock: StockDto = this.stockForm.getRawValue();
-    const params = {stockDto: stock, productId: this._savedProduct.pzn};
-    this._subscriptions.push(this._stockService.createStockUsingPOST(params).subscribe({
-      next: () => {
-        console.log("Stock created!");
-        this._router.navigate(['/products'])
-          .then(() => {
-            window.location.reload();
-          });
-      },
-      error: (error) => {{this.showError = error.error}}
+  private _getProduct(){
+    this._subscriptions.push( this._productService.product$.subscribe({
+      next: (product: ProductDto) => {
+        this.productForm.patchValue(product);
+      }
     }));
   }
-  previousPage() {
-    this.activeIndex = 0;
+
+  private _patchValueOfProductSteps(){
+    this._subscriptions.push( this._productService.productToBeCreated$.subscribe({
+      next: (product: ProductDto) => {
+        this.productForm.patchValue(product);
+      }
+    }));
   }
   private _createProductForm(){
     this.productForm = this._fb.group({
       packageSize: [null,
         [Validators.required,
-        Validators.maxLength(20)]],
+          Validators.maxLength(20)]],
       productName: [null,
         [Validators.required,
           Validators.maxLength(100)]],
@@ -108,22 +103,5 @@ export class ProductFormComponent implements OnInit {
       })
     );
   }
-  private _createStockForm(){
-    this.stockForm = this._fb.group({
-      quantity: [null,
-        [Validators.required,
-          Validators.pattern("^[0-9]*$")
-        ]],
-      price: [null,
-        [Validators.required,
-        Validators.pattern("^[0-9.]*$")]]
-    });
-    this._subscriptions.push(
-      this.stockForm.statusChanges.subscribe((value: FormControlStatus) =>{
-        this.formValidation = value;
-      })
-    );
-  }
-
 
 }

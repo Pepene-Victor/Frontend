@@ -4,10 +4,11 @@ import { HttpClient, HttpRequest, HttpResponse, HttpHeaders } from '@angular/com
 import { BaseService as __BaseService } from '../base-service';
 import { ApiConfiguration as __Configuration } from '../api-configuration';
 import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-response';
-import { Observable as __Observable } from 'rxjs';
+import {BehaviorSubject, Observable as __Observable, Subject} from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { StockDto } from '../models/stock-dto';
+import {ProductDto} from "../models/product-dto";
 
 /**
  * Stock Controller
@@ -16,6 +17,11 @@ import { StockDto } from '../models/stock-dto';
   providedIn: 'root',
 })
 class StockControllerService extends __BaseService {
+  isReadOnlyStatus$: Subject<boolean> = new Subject<boolean>();
+  stockDialog$: Subject<boolean> = new Subject<boolean>();
+  stock$: BehaviorSubject<StockDto> = new BehaviorSubject<StockDto>({} as StockDto);
+  stockToBeCreated$: BehaviorSubject<StockDto> = new BehaviorSubject<StockDto>({} as StockDto);
+  isStockDetails$: Subject<boolean> = new Subject<boolean>();
   static readonly getAllStocksUsingGETPath = '/stocks';
   static readonly createStockUsingPOSTPath = '/stocks/create/productId';
   static readonly getStockByProductIdUsingGETPath = '/stocks/productId';
